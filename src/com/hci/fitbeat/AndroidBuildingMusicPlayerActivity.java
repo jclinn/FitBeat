@@ -128,7 +128,7 @@ implements OnCompletionListener, SeekBar.OnSeekBarChangeListener, SensorEventLis
         accelerometer = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         sm.registerListener((SensorEventListener) this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
         
-        acceleration=(TextView)findViewById(R.id.acceleration);
+        //acceleration=(TextView)findViewById(R.id.acceleration);
         
         // All player buttons
         btnPlay = (ImageButton) findViewById(R.id.btnPlay);
@@ -217,6 +217,7 @@ implements OnCompletionListener, SeekBar.OnSeekBarChangeListener, SensorEventLis
 				@Override
 				public void onClick(View v) {
 					Intent i = new Intent(getApplicationContext(), PlayListActivity.class);
+					i.putExtra("playlist", songsListCur);
 					startActivityForResult(i, 100);
 					
 				}
@@ -382,16 +383,6 @@ implements OnCompletionListener, SeekBar.OnSeekBarChangeListener, SensorEventLis
     	//Play song
     	try {
     		//checkModeIntensity(workout, mode);
-    		/*if(comboMode == 0) {
-    			songsListCur = songsList;
-    		} else if (comboMode == 1) {
-    			songsListCur = songsListEasy;
-    		} else if (comboMode == 2) {
-    			songsListCur = songsListMed;
-    		} else {
-    			songsListCur = songsListHard;
-    		}*/
-    		
     		System.out.println("mode = " + mode + " size = " + songsListCur.size() + "index: " + songIndex + " song: ");// + songsListCur.get(songIndex));
     		mp.reset();
     		mp.setDataSource(songsListCur.get(songIndex).get("songPath"));
@@ -537,7 +528,7 @@ implements OnCompletionListener, SeekBar.OnSeekBarChangeListener, SensorEventLis
 	@Override
 	public void onSensorChanged(SensorEvent event) {
 		// change value of text view to value on accelerometer 
-		acceleration.setText("X: " + event.values[0] + "\nY: " +event.values[1] + "\nZ: " + event.values[2]);
+	//	acceleration.setText("X: " + event.values[0] + "\nY: " +event.values[1] + "\nZ: " + event.values[2]);
 	}
 	
 	
@@ -777,10 +768,13 @@ implements OnCompletionListener, SeekBar.OnSeekBarChangeListener, SensorEventLis
 			}
 		} else  { // hillclimb
 			if( mode == 1 ) { //easy
+				songsListCur = updateHillClimbList(songsListEasy1, songsListEasy2, songsListMed1, songsListMed2);
 				comboMode = 7;
 			} else if (mode == 2) { //medium
+				songsListCur = updateHillClimbList(songsListEasy2, songsListMed1, songsListMed2, songsListHard1);
 				comboMode = 8;
 			} else { //hard
+				songsListCur = updateHillClimbList(songsListMed1, songsListMed2, songsListHard1, songsListHard2);
 				comboMode = 9;
 			}
 		}
@@ -800,10 +794,8 @@ implements OnCompletionListener, SeekBar.OnSeekBarChangeListener, SensorEventLis
 				System.out.println("in slow");
 				intervalList.add(slow.get(slowCount));
 				slowCount++;
-			} else {
-				empty = true;
 			}
-			if(fastCount<= fast.size()-1){
+			else if(fastCount<= fast.size()-1){
 				System.out.println("in fast");
 				intervalList.add(fast.get(fastCount));
 				fastCount++;
@@ -814,4 +806,35 @@ implements OnCompletionListener, SeekBar.OnSeekBarChangeListener, SensorEventLis
 		System.out.println("intervalList size " + intervalList.size());
 		return intervalList;
 	}
+	
+	
+	public ArrayList<HashMap<String, String>> updateHillClimbList ( ArrayList<HashMap<String, String>> slow, 
+			ArrayList<HashMap<String, String>> med, ArrayList<HashMap<String, String>> avg, ArrayList<HashMap<String, String>> fast) {
+		ArrayList<HashMap<String, String>> intervalList = new ArrayList<HashMap<String, String>>();
+		Random rand = new Random();
+        int slowIndex = 0;
+        int medIndex = 0;
+        int avgIndex = 0;
+        int fastIndex = 0;
+
+		slowIndex = rand.nextInt((slow.size() - 1) - 0 + 1) + 0;
+		intervalList.add(slow.get(slowIndex));
+		medIndex = rand.nextInt((med.size() - 1) - 0 + 1) + 0;
+		intervalList.add(med.get(medIndex));
+		avgIndex = rand.nextInt((avg.size() - 1) - 0 + 1) + 0;
+		intervalList.add(avg.get(avgIndex));
+		fastIndex = rand.nextInt((fast.size() - 1) - 0 + 1) + 0;
+		intervalList.add(fast.get(fastIndex));
+		avgIndex = rand.nextInt((avg.size() - 1) - 0 + 1) + 0;
+		intervalList.add(avg.get(avgIndex));
+		medIndex = rand.nextInt((med.size() - 1) - 0 + 1) + 0;
+		intervalList.add(med.get(medIndex));
+		slowIndex = rand.nextInt((slow.size() - 1) - 0 + 1) + 0;
+		intervalList.add(slow.get(slowIndex));
+		return intervalList;
+	}
+	/*
+	@Override
+	public void onBackPressed() {
+	}*/
 }
