@@ -28,17 +28,18 @@ public class PlayListActivity extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.playlist);
-		
+		Bundle b = getIntent().getExtras();
+		songsList = (ArrayList<HashMap<String, String>>) b.get("playlist");
 		ArrayList<HashMap<String, String>> songsListData = new ArrayList<HashMap<String, String>>();
 		
-		SongsManager plm = new SongsManager();
+		/*SongsManager plm = new SongsManager();
 		// gets all songs from sdcard
 		try {
 			this.songsList = plm.getPlayList();
 		} catch (EchoNestException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 
 		// looping through playlist
 		for(int i = 0; i < songsList.size(); i++) {

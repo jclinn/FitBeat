@@ -2,33 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background= "@drawable/phonebg"> 
+    android:background="#000000"> 
  
-    
-      <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:layout_alignParentTop="true"
-        android:gravity="center">
-     
-           <ImageButton
-               android:id="@+id/title2"
-                android:layout_width="207dp"
-                android:layout_height="65dp"
-                android:background="@null"
-                android:scaleType="centerInside"
-                android:src="@drawable/title2" />
- 	   </LinearLayout>
- 	   
-      
     <!-- Player Header -->
     <LinearLayout
         android:id="@+id/player_header_bg"
         android:layout_width="fill_parent"
-        android:layout_height="140dip"
-        android:paddingTop="80dp"
+        android:layout_height="60dip"
+      
+        android:layout_alignParentTop="true"
         android:paddingLeft="5dp"
         android:paddingRight="5dp">
  
@@ -36,7 +18,8 @@
         <TextView
         android:id="@+id/acceleration"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="@string/acc_values" />
         
         <!-- Song Title -->
         <TextView
@@ -44,12 +27,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="#ffffff"
+            android:textColor="#04b3d2"
             android:textSize="16dp"
             android:paddingLeft="10dp"
             android:textStyle="bold"
             android:text="The Good, The Bad And The Ugly"
-            android:fontFamily="Arial"
             android:layout_marginTop="10dp"/>
  
         <!-- Playlist button -->
@@ -77,12 +59,9 @@
  
     <!-- Player Footer -->
     <LinearLayout
-        android:background= "#ffffff"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
         android:id="@+id/player_footer_bg"
         android:layout_width="fill_parent"
-        android:layout_height="120dp"
+        android:layout_height="100dp"
         android:layout_alignParentBottom="true"
         
         android:gravity="center">
@@ -95,64 +74,40 @@
             android:gravity="center_vertical"
             >
             <!-- Previous Button -->
-
             <ImageButton
                 android:id="@+id/btnPrevious"
-                android:layout_width="60dp"
-                android:layout_height="40dp"
-                android:background="@null"
-                android:scaleType="fitCenter"
-                             android:padding="5dp"
-                android:src="@drawable/btn_prev" />
-
+                android:src="@drawable/btn_prev"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@null"/>
             <!-- Backward Button -->
-
             <ImageButton
                 android:id="@+id/btnBackward"
-                android:layout_width="60dp"
-                android:layout_height="40dp"
-                android:background="@null"
-                android:padding="5dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/btn_back" />
-
+                android:src="@drawable/btn_back"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@null"/>
             <!-- Play Button -->
-
             <ImageButton
                 android:id="@+id/btnPlay"
-                android:layout_width="110dp"
-                android:paddingLeft= "15dp"
-                android:paddingRight= "15dp"
-                android:layout_height="96dp"
-                android:background="@null"
-                android:maxHeight="50dp"
-                  android:padding="5dp"
-                android:maxWidth="50dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/btn_play" />
-
+                android:src="@drawable/btn_play"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@null"/>
             <!-- Forward Button -->
-
             <ImageButton
                 android:id="@+id/btnForward"
-                android:layout_width="60dp"
-                android:layout_height="40dp"
-                  android:padding="5dp"
-                android:background="@null"
-                android:scaleType="centerInside"
-                android:src="@drawable/btn_forward" />
-
+                android:src="@drawable/btn_forward"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@null"/>
             <!-- Next Button -->
-
             <ImageButton
                 android:id="@+id/btnNext"
-                android:layout_width="60dp"
-                android:layout_height="40dp"
-                             android:padding="5dp"
-                android:background="@null"
-                android:scaleType="centerInside"
-                android:src="@drawable/btn_next" />
-
+                android:src="@drawable/btn_next"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@null"/>
         </LinearLayout>
     </LinearLayout>
  
@@ -206,26 +161,21 @@
         android:layout_above="@id/timerDisplay"
         android:gravity="center">
         <!-- Repeat Button -->
-
         <ImageButton
             android:id="@+id/btnRepeat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="25dp"
-            android:background="@null"
-            android:scaleType="centerInside"
-            android:src="@drawable/btn_repeat" />
+            android:src="@drawable/btn_repeat"
+            android:layout_marginRight="5dp"
+            android:background="@null"/>
  
         <!-- Shuffle Button -->
-
          <ImageButton
-             android:id="@+id/btnShuffle"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_marginLeft="25dp"
-             android:background="@null"
-             android:scaleType="centerInside"
-             android:src="@drawable/btn_shuffle" />
-
+            android:id="@+id/btnShuffle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/btn_shuffle"
+            android:layout_marginLeft="5dp"
+            android:background="@null"/>
     </LinearLayout>
 </RelativeLayout>
